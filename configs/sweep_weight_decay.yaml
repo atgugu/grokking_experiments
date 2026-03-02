@@ -1,0 +1,30 @@
+# Sweep over weight decay to study regularization pressure
+# Higher wd -> earlier grokking; lower wd -> may not grok at all
+
+p: 113
+operation: addition
+train_fraction: 0.3
+
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+beta1: 0.9
+beta2: 0.999
+
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 10000
+n_top_frequencies: 5
+
+# Sweep values (run with different --weight-decay)
+# Suggested: 0.01, 0.1, 0.3, 0.5, 1.0, 2.0, 5.0
+weight_decay: 1.0
+seed: 42

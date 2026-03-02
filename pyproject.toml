@@ -1,0 +1,27 @@
+[project]
+name = "grokking-experiments"
+version = "0.1.0"
+description = "Replicating 'Progress measures for grokking via mechanistic interpretability' (Nanda et al., ICLR 2023)"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.0",
+    "matplotlib>=3.7",
+    "plotly>=5.0",
+    "streamlit>=1.20",
+    "scikit-learn>=1.2",
+    "scipy>=1.10",
+    "pyyaml>=6.0",
+    "tqdm>=4.60",
+    "kaleido>=0.2",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

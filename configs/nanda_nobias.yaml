@@ -1,0 +1,30 @@
+# Nanda et al. (2023) replication with MLP bias disabled
+# Compare against nanda_replication.yaml for bias ablation
+
+p: 113
+operation: addition
+train_fraction: 0.3
+
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+mlp_bias: false
+
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+
+# Same logging intervals as nanda_replication for apples-to-apples comparison
+eval_interval: 50
+fourier_interval: 200
+checkpoint_interval: 2000
+n_top_frequencies: 5
+
+seed: 42

@@ -1,0 +1,33 @@
+# Default hyperparameters for grokking experiments (Nanda et al. 2023)
+
+# Task
+p: 113                    # Prime modulus
+operation: addition       # a + b mod p
+train_fraction: 0.3       # 30% train, 70% test
+
+# Model
+d_model: 128
+n_heads: 4                # d_head = d_model / n_heads = 32
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+mlp_bias: true
+
+# Training
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+
+# Logging & checkpointing
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 5000
+n_top_frequencies: 5
+
+# Reproducibility
+seed: 42
