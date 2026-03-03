@@ -9,8 +9,6 @@ build/
 .idea/
 *.swp
 *.swo
-results/
-*.npz
 *.pt
 *.pth
 .ipynb_checkpoints/
