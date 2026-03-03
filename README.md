@@ -115,6 +115,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Sweeping weight decay from 0.01 to 5.0 reveals a sharp phase transition: too little regularization delays grokking indefinitely, too much prevents learning altogether, and a narrow optimal range (wd~1.0) produces rapid generalization with clean Fourier sparsity.</em>
 </p>
 
+### Train Fraction Sweep
+
+<p align="center">
+  <img src="docs/figures/tf_sweep_animation.gif" alt="Train fraction sweep animation" width="720">
+  <br>
+  <em>Sweeping train fraction from 5% to 70% reveals a data threshold for grokking: below 30% the model never generalizes within 40K epochs, while above 30% grokking accelerates dramatically — from 8,350 epochs at 30% to just 400 at 70%.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
