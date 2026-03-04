@@ -58,6 +58,15 @@ def setup_logging(level: str = "INFO") -> logging.Logger:
     return logger
 
 
+_OP_SUFFIXES = {
+    "addition": None,
+    "subtraction": "sub",
+    "multiplication": "mul",
+    "x2_plus_y2": "x2y2",
+    "x3_plus_xy": "x3xy",
+}
+
+
 def run_id(config: dict) -> str:
     """Generate a unique run ID from config parameters."""
     parts = [
@@ -75,4 +84,8 @@ def run_id(config: dict) -> str:
         parts.append(f"lr{config['lr']}")
     if not config.get("mlp_bias", True):
         parts.append("nobias")
+    op = config.get("operation", "addition")
+    op_suffix = _OP_SUFFIXES.get(op)
+    if op_suffix is not None:
+        parts.append(op_suffix)
     return "_".join(parts)

@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.data.modular_arithmetic import ModularArithmeticEnvironment, ModularArithmeticDataset
+from src.utils import run_id, _OP_SUFFIXES
 
 
 class TestModularArithmeticEnvironment:
@@ -57,6 +58,54 @@ class TestModularArithmeticEnvironment:
         for i in range(len(env.a_all)):
             a, b = env.a_all[i], env.b_all[i]
             assert env.targets_all[i] == (a * b) % 7
+
+    def test_subtraction_correctness(self):
+        env = ModularArithmeticEnvironment(p=7, operation="subtraction", seed=0)
+        for i in range(len(env.a_all)):
+            a, b = env.a_all[i], env.b_all[i]
+            assert env.targets_all[i] == (a - b) % 7
+
+    def test_x2_plus_y2_correctness(self):
+        env = ModularArithmeticEnvironment(p=7, operation="x2_plus_y2", seed=0)
+        for i in range(len(env.a_all)):
+            a, b = env.a_all[i], env.b_all[i]
+            assert env.targets_all[i] == (a * a + b * b) % 7
+
+    def test_x3_plus_xy_correctness(self):
+        env = ModularArithmeticEnvironment(p=7, operation="x3_plus_xy", seed=0)
+        for i in range(len(env.a_all)):
+            a, b = env.a_all[i], env.b_all[i]
+            assert env.targets_all[i] == (a * a * a + a * b) % 7
+
+    def test_x2_plus_y2_symmetry(self):
+        """x2_plus_y2 should be symmetric: f(a,b) == f(b,a)."""
+        env = ModularArithmeticEnvironment(p=7, operation="x2_plus_y2", seed=0)
+        p = env.p
+        for a in range(p):
+            for b in range(p):
+                idx_ab = a * p + b
+                idx_ba = b * p + a
+                assert env.targets_all[idx_ab] == env.targets_all[idx_ba]
+
+    def test_x3_plus_xy_asymmetry(self):
+        """x3_plus_xy should be asymmetric: f(a,b) != f(b,a) for some a,b."""
+        env = ModularArithmeticEnvironment(p=7, operation="x3_plus_xy", seed=0)
+        p = env.p
+        found_asymmetric = False
+        for a in range(p):
+            for b in range(p):
+                idx_ab = a * p + b
+                idx_ba = b * p + a
+                if env.targets_all[idx_ab] != env.targets_all[idx_ba]:
+                    found_asymmetric = True
+                    break
+            if found_asymmetric:
+                break
+        assert found_asymmetric, "Expected x3_plus_xy to be asymmetric"
+
+    def test_unknown_operation_raises(self):
+        with pytest.raises(ValueError, match="Unknown operation"):
+            ModularArithmeticEnvironment(p=7, operation="division", seed=0)
 
     def test_deterministic_split(self):
         env1 = ModularArithmeticEnvironment(p=113, seed=42)
@@ -137,3 +186,42 @@ class TestModularArithmeticDataset:
         for i in range(5):
             assert ds.a_vals[i] == 0
             assert ds.b_vals[i] == i
+
+
+class TestRunIdOperationSuffixes:
+    """Test that run_id produces correct suffixes for each operation."""
+
+    BASE_CONFIG = {
+        "p": 113, "d_model": 128, "n_heads": 4, "d_mlp": 512,
+        "n_layers": 1, "weight_decay": 1.0, "seed": 42,
+    }
+
+    def test_addition_no_suffix(self):
+        config = {**self.BASE_CONFIG, "operation": "addition"}
+        rid = run_id(config)
+        assert rid == "p113_d128_h4_mlp512_L1_wd1.0_s42"
+
+    def test_subtraction_suffix(self):
+        config = {**self.BASE_CONFIG, "operation": "subtraction"}
+        rid = run_id(config)
+        assert rid.endswith("_sub")
+
+    def test_multiplication_suffix(self):
+        config = {**self.BASE_CONFIG, "operation": "multiplication"}
+        rid = run_id(config)
+        assert rid.endswith("_mul")
+
+    def test_x2_plus_y2_suffix(self):
+        config = {**self.BASE_CONFIG, "operation": "x2_plus_y2"}
+        rid = run_id(config)
+        assert rid.endswith("_x2y2")
+
+    def test_x3_plus_xy_suffix(self):
+        config = {**self.BASE_CONFIG, "operation": "x3_plus_xy"}
+        rid = run_id(config)
+        assert rid.endswith("_x3xy")
+
+    def test_default_operation_no_suffix(self):
+        """No operation key should default to addition (no suffix)."""
+        rid = run_id(self.BASE_CONFIG)
+        assert rid == "p113_d128_h4_mlp512_L1_wd1.0_s42"

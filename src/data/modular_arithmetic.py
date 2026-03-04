@@ -58,6 +58,10 @@ class ModularArithmeticEnvironment:
             return (a - b) % self.p
         elif self.operation == "multiplication":
             return (a * b) % self.p
+        elif self.operation == "x2_plus_y2":
+            return (a * a + b * b) % self.p
+        elif self.operation == "x3_plus_xy":
+            return (a * a * a + a * b) % self.p
         else:
             raise ValueError(f"Unknown operation: {self.operation}")
 

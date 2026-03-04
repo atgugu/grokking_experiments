@@ -131,6 +131,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Sweeping learning rate from 1e-4 to 1e-2 reveals that LR controls grokking speed across two orders of magnitude: lr=3e-3 groks in just 1,500 epochs vs. 8,350 at the default 1e-3, while lr=1e-4 never groks and lr=1e-2 groks fast but catastrophically collapses at epoch 18,400.</em>
 </p>
 
+### Operation Sweep
+
+<p align="center">
+  <img src="docs/figures/op_sweep_animation.gif" alt="Operation sweep animation" width="720">
+  <br>
+  <em>Sweeping across five modular operations — addition, subtraction, multiplication, a² + b², and a³ + ab — reveals whether grokking is universal across algebraic structures and whether different operations produce different internal Fourier representations.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
