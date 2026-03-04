@@ -71,6 +71,8 @@ def run_id(config: dict) -> str:
     ]
     if config.get("train_fraction", 0.3) != 0.3:
         parts.append(f"tf{config['train_fraction']}")
+    if config.get("lr", 1e-3) != 1e-3:
+        parts.append(f"lr{config['lr']}")
     if not config.get("mlp_bias", True):
         parts.append("nobias")
     return "_".join(parts)

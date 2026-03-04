@@ -123,6 +123,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Sweeping train fraction from 5% to 70% reveals a data threshold for grokking: below 30% the model never generalizes within 40K epochs, while above 30% grokking accelerates dramatically — from 8,350 epochs at 30% to just 400 at 70%.</em>
 </p>
 
+### Learning Rate Sweep
+
+<p align="center">
+  <img src="docs/figures/lr_sweep_animation.gif" alt="Learning rate sweep animation" width="720">
+  <br>
+  <em>Sweeping learning rate from 1e-4 to 1e-2 reveals that LR controls grokking speed across two orders of magnitude: lr=3e-3 groks in just 1,500 epochs vs. 8,350 at the default 1e-3, while lr=1e-4 never groks and lr=1e-2 groks fast but catastrophically collapses at epoch 18,400.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
