@@ -139,6 +139,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Sweeping across five modular operations — addition, subtraction, multiplication, a² + b², and a³ + ab — reveals whether grokking is universal across algebraic structures and whether different operations produce different internal Fourier representations.</em>
 </p>
 
+### Depth Sweep
+
+<p align="center">
+  <img src="docs/figures/depth_sweep_animation.gif" alt="Depth sweep animation" width="720">
+  <br>
+  <em>Sweeping network depth from 1 to 3 layers across all five operations reveals that deeper networks are not universally better: multiplication uniquely benefits from depth (grokking 3× faster at L=3), while addition and x²+y² become unstable or fail entirely at L=3, and x³+ab never groks at any depth.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
