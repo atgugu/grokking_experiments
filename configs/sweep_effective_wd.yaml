@@ -1,0 +1,21 @@
+# Base config for effective-wd (wd × lr) unification sweep
+p: 113
+train_fraction: 0.3
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 10000
+n_top_frequencies: 5
+seed: 42

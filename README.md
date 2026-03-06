@@ -147,6 +147,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Sweeping network depth from 1 to 3 layers across all five operations reveals that deeper networks are not universally better: multiplication uniquely benefits from depth (grokking 3× faster at L=3), while addition and x²+y² become unstable or fail entirely at L=3, and x³+ab never groks at any depth.</em>
 </p>
 
+### Effective Regularization Sweep
+
+<p align="center">
+  <img src="docs/figures/effective_wd_animation.gif" alt="Effective regularization (wd × lr) unification animation" width="720">
+  <br>
+  <em>Testing whether grokking dynamics are controlled purely by the product eff_wd = wd × lr (the effective weight-decay per AdamW step). Each animated panel overlays three (wd, lr) decompositions that share the same eff_wd — if curves overlap, unification holds. The eff_wd=1e-3 group (baseline wd=1.0/lr=1e-3, plus wd=2.0/lr=5e-4 and wd=0.5/lr=2e-3) provides the cleanest three-way test of this mechanistic prediction.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
