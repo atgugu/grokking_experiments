@@ -155,6 +155,14 @@ Attention heads learn interpretable patterns: uniformly attending to both operan
   <em>Testing whether grokking dynamics are controlled purely by the product eff_wd = wd × lr (the effective weight-decay per AdamW step). Each animated panel overlays three (wd, lr) decompositions that share the same eff_wd — if curves overlap, unification holds. The eff_wd=1e-3 group (baseline wd=1.0/lr=1e-3, plus wd=2.0/lr=5e-4 and wd=0.5/lr=2e-3) provides the cleanest three-way test of this mechanistic prediction.</em>
 </p>
 
+### Prime p Sweep
+
+<p align="center">
+  <img src="docs/figures/primes_animation.gif" alt="Prime p sweep animation" width="720">
+  <br>
+  <em>Sweeping the group size p ∈ {7, 11, 13, 17, 23, 31, 43, 59, 67, 89, 97, 113} reveals a sharp phase transition: models with p ≤ 43 (~550 training pairs) never grok despite perfect training accuracy, while p ≥ 59 (~1,000+ pairs) always grok — and counterintuitively, larger p groks faster (epoch ~ p<sup>−1.74</sup>). The number of key Fourier frequencies is universally 5 across all primes.</em>
+</p>
+
 <details>
 <summary><b>Fourier Deep Dive</b> — evolution, spectra, and embedding Fourier structure</summary>
 <br>
