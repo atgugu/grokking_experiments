@@ -1,0 +1,114 @@
+{
+  "primary_model": 1,
+  "heads_analyzed": [
+    1,
+    4,
+    16
+  ],
+  "per_model": {
+    "1": {
+      "key_frequencies_demirrored": [
+        24,
+        26,
+        31,
+        45,
+        48
+      ],
+      "n_key_freq": 5,
+      "effective_rank_99": 10,
+      "effective_rank_95": 9,
+      "max_rank": 10,
+      "interference_ratio": 3.1282067629748775,
+      "diag_mean_coupling": 1.0,
+      "offdiag_mean_coupling": 3.1282067629748775
+    },
+    "4": {
+      "key_frequencies_demirrored": [
+        24,
+        26,
+        31,
+        45,
+        48
+      ],
+      "n_key_freq": 5,
+      "effective_rank_99": 10,
+      "effective_rank_95": 10,
+      "max_rank": 10,
+      "interference_ratio": 2.778258210109105,
+      "diag_mean_coupling": 1.0,
+      "offdiag_mean_coupling": 2.778258210109105
+    },
+    "16": {
+      "key_frequencies_demirrored": [
+        9,
+        24,
+        31,
+        45,
+        52
+      ],
+      "n_key_freq": 5,
+      "effective_rank_99": 10,
+      "effective_rank_95": 9,
+      "max_rank": 10,
+      "interference_ratio": 0.7755813396537812,
+      "diag_mean_coupling": 1.0,
+      "offdiag_mean_coupling": 0.7755813396537812
+    }
+  },
+  "primary_details": {
+    "key_frequencies": [
+      24,
+      26,
+      31,
+      45,
+      48
+    ],
+    "max_subspace_overlap": 0.6150138832685805,
+    "subspace_overlaps": [
+      [
+        1.0,
+        0.034180744108137706,
+        0.039485340132211354,
+        0.06845412295738701,
+        0.1723634962162672
+      ],
+      [
+        0.034180744108137706,
+        1.0,
+        0.034747089494025746,
+        0.037174239667559644,
+        0.0731787212717301
+      ],
+      [
+        0.039485340132211354,
+        0.034747089494025746,
+        1.0,
+        0.05370410341027322,
+        0.6150138832685805
+      ],
+      [
+        0.06845412295738701,
+        0.037174239667559644,
+        0.05370410341027322,
+        1.0,
+        0.05706213331280046
+      ],
+      [
+        0.1723634962162672,
+        0.0731787212717301,
+        0.6150138832685804,
+        0.05706213331280046,
+        1.0
+      ]
+    ],
+    "active_neurons": 512,
+    "polysemantic_neurons": 3,
+    "gini_stored": 0.9766486287117004,
+    "gini_recomputed": 0.9766486287117004,
+    "mean_attention_at_eq": {
+      "to_a": 0.4965924024581909,
+      "to_b": 0.4965725243091583,
+      "to_eq": 0.00683510210365057
+    }
+  }
+}

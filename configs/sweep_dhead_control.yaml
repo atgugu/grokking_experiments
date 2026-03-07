@@ -1,0 +1,37 @@
+# d_head control experiment: resolve head-count vs per-head-capacity confound
+#
+# Design: Hold d_head=32 constant, vary n_heads (and therefore d_model):
+#   h=1, d_model=32  (d_head=32, ~4K params)
+#   h=2, d_model=64  (d_head=32, ~17K params)
+#   h=4, d_model=128 (d_head=32, ~200K params) -- matches baseline
+#
+# Also run h=1, d_model=64 (d_head=64) to test d_head scaling within h=1.
+#
+# Grid: configs above x p in {43, 113} x seed in {42, 137, 256}
+# Both d_model, n_heads, p, and seed are overridden per-run in the sweep script.
+
+operation: addition
+train_fraction: 0.3
+
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 10000
+n_top_frequencies: 5
+
+p: 113
+seed: 42

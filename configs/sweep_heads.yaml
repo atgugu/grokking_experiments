@@ -1,0 +1,32 @@
+# Sweep over attention head count to probe the mechanistic question:
+# does n_key_freq scale with n_heads (Nanda's picture) or stay ~5 (task-determined)?
+#
+# Sweep values: n_heads ∈ {1, 2, 4, 8, 16}
+# d_model = 128 fixed → d_head ∈ {128, 64, 32, 16, 8}
+# Note: n_heads=4 baseline already exists at p113_d128_h4_mlp512_L1_wd1.0_s42
+
+operation: addition
+train_fraction: 0.3
+
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 10000
+n_top_frequencies: 5
+
+p: 113
+seed: 42

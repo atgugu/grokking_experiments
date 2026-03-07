@@ -1,0 +1,34 @@
+# Joint (n_heads x p) sweep: frequency scaling across architectures
+#
+# Tests whether K (intrinsic frequency count) scales as O(log p) regardless
+# of n_heads, whether the grokking phase transition shifts with n_heads,
+# and whether the h=1 speed advantage holds across all primes.
+#
+# Grid: p in {13, 23, 31, 43, 59, 67, 89, 113} x n_heads in {1, 2, 4, 8}
+# Both p and n_heads are overridden per-run in the sweep script.
+
+operation: addition
+train_fraction: 0.3
+
+d_model: 128
+n_heads: 4
+d_mlp: 512
+n_layers: 1
+activation: relu
+use_layernorm: false
+tie_embeddings: false
+
+max_epochs: 40000
+optimizer: adamw
+lr: 1.0e-3
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.999
+
+eval_interval: 100
+fourier_interval: 500
+checkpoint_interval: 10000
+n_top_frequencies: 5
+
+p: 113
+seed: 42
